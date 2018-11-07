@@ -1,0 +1,47 @@
+buildscript {
+    ext {
+        springBootVersion = '2.1.0.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'application'
+apply plugin: 'idea'
+apply plugin: "org.springframework.boot"
+apply plugin: 'io.spring.dependency-management'
+
+mainClassName = 'hello.HelloWorld'
+
+//repositories
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+//dependencies
+
+sourceCompatibility=1.8
+targetCompatibility=1.8
+
+dependencies {
+    compile("joda-time:joda-time:2.2")
+    testCompile("junit:junit")
+    compile("org.springframework.boot:spring-boot-starter-web")
+}
+
+//jar
+bootJar {
+    baseName = 'code'
+    version =  '0.1.0'
+}
+
+//wrapper
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.11'
+}
